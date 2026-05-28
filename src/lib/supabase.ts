@@ -1,11 +1,39 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
+// Keep the existing untyped Supabase query behavior while deferring client creation until runtime.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type AnySupabaseClient = SupabaseClient<any, "public", any>;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+let browserClient: AnySupabaseClient | null = null;
+
+function getSupabaseEnv() {
+  return {
+    supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL ?? "",
+    supabaseAnonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "",
+  };
+}
+
+export function getSupabase() {
+  const { supabaseUrl, supabaseAnonKey } = getSupabaseEnv();
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error("Missing Supabase public environment variables.");
+  }
+
+  browserClient ??= createClient(supabaseUrl, supabaseAnonKey);
+  return browserClient;
+}
+
+export const supabase = new Proxy({} as AnySupabaseClient, {
+  get(_target, prop) {
+    const client = getSupabase();
+    const value = Reflect.get(client, prop, client);
+    return typeof value === "function" ? value.bind(client) : value;
+  },
+});
 
 export function supabaseAdmin() {
+  const { supabaseUrl } = getSupabaseEnv();
   const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!supabaseUrl || !serviceRoleKey) {
