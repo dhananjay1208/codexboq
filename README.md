@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BOQ.ai
 
-## Getting Started
+BOQ.ai is a hackathon-ready construction BOQ and GRN demo that puts four AI agents on a 3-minute workflow:
 
-First, run the development server:
+- Invoice Vision extracts supplier invoice fields and line items.
+- Material Matcher reconciles invoice descriptions to the master material library.
+- Compliance Auditor verifies Test Certificates and TDS documents.
+- BOQ Normalizer maps messy Excel BOQs into structured packages, headlines, and line items.
+
+## Stack
+
+- Next.js 16 App Router, TypeScript, React 19
+- Supabase Postgres, Storage, permissive demo RLS
+- Tailwind v4, shadcn/ui, lucide-react, sonner
+- OpenAI SDK with `gpt-4o` vision and `gpt-4o-mini` structured extraction
+- SheetJS, jsPDF, jspdf-autotable
+
+## Environment
+
+Create `.env.local` from `.env.local.example`:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+OPENAI_API_KEY=
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Never expose `SUPABASE_SERVICE_ROLE_KEY` or `OPENAI_API_KEY` in client code.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Run Locally
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+Open `http://localhost:3000` and sign in with:
 
-To learn more about Next.js, take a look at the following resources:
+```text
+demo / demo
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Database
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Apply migrations in Supabase SQL Editor:
 
-## Deploy on Vercel
+- `supabase/migrations/001_boqai_init.sql`
+- `supabase/migrations/002_boq.sql`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Then seed the demo:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npx tsx scripts/seed-demo.ts
+```
+
+The seed creates sites, suppliers, 30 materials, BOQ rows, committed GRNs, and compliance documents.
+
+## Demo Loop
+
+1. Dashboard: show live KPIs and AI capability pills.
+2. GRN: upload an invoice, watch Vision and Matcher logs, review matched materials, commit.
+3. Compliance: upload or re-audit docs and show flagged AI findings.
+4. MIR Reports: select a GRN date and download the verified report PDF.
+5. BOQ: import Excel and show the Normalizer column map.
+
+## Screenshots
+
+![Dashboard](public/screenshots/dashboard.svg)
+
+![GRN AI Flow](public/screenshots/grn-flow.svg)
+
+![MIR Report](public/screenshots/mir-report.svg)
+
+## Useful Commands
+
+```bash
+npm run lint
+npm run build
+npx tsx scripts/seed-demo.ts
+```
+
+## Deploy
+
+Deploy to Vercel, add the same environment variables, and keep the Supabase bucket `boqai-docs` private.

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#D946EF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="#05060A"/>
+  <text x="70" y="82" fill="url(#g)" font-family="Arial" font-size="38" font-weight="700">GRN Invoice Vision</text>
+  <rect x="70" y="125" width="500" height="390" rx="20" fill="#fff" opacity=".06" stroke="#fff" stroke-opacity=".14"/>
+  <rect x="610" y="125" width="520" height="390" rx="20" fill="#fff" opacity=".06" stroke="#fff" stroke-opacity=".14"/>
+  <rect x="110" y="170" width="420" height="270" rx="16" fill="#000" opacity=".35" stroke="#fff" stroke-opacity=".16" stroke-dasharray="8 8"/>
+  <text x="230" y="310" fill="#E6E8EE" font-family="Arial" font-size="28" font-weight="700">Drop invoice here</text>
+  <text x="650" y="182" fill="#E6E8EE" font-family="Arial" font-size="28" font-weight="700">Agent log</text>
+  <g font-family="Consolas, monospace" font-size="20" fill="#93C5FD">
+    <text x="650" y="235">Vision agent reading invoice...</text>
+    <text x="650" y="280">Parsed vendor: Shree Cement</text>
+    <text x="650" y="325">Found 3 line items</text>
+    <text x="650" y="370">Matching materials...</text>
+    <text x="650" y="415">Matched 3 • Suggested 0 new</text>
+  </g>
+  <rect x="70" y="550" width="1060" height="58" rx="16" fill="#3B82F6" opacity=".92"/>
+  <text x="430" y="587" fill="#fff" font-family="Arial" font-size="22" font-weight="700">Commit GRN after AI review</text>
+</svg>

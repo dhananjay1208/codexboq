@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#D946EF"/>
+    </linearGradient>
+    <filter id="b"><feGaussianBlur stdDeviation="45"/></filter>
+  </defs>
+  <rect width="1200" height="675" fill="#05060A"/>
+  <circle cx="260" cy="80" r="180" fill="#3B82F6" opacity=".28" filter="url(#b)"/>
+  <circle cx="1020" cy="360" r="230" fill="#D946EF" opacity=".22" filter="url(#b)"/>
+  <rect x="24" y="24" width="170" height="627" rx="18" fill="#ffffff" opacity=".06" stroke="#ffffff" stroke-opacity=".12"/>
+  <text x="56" y="78" fill="url(#g)" font-family="Arial" font-size="30" font-weight="700">BOQ.ai</text>
+  <text x="250" y="82" fill="#E6E8EE" font-family="Arial" font-size="34" font-weight="700">Dashboard</text>
+  <g fill="#ffffff" opacity=".08" stroke="#ffffff" stroke-opacity=".12">
+    <rect x="250" y="126" width="205" height="118" rx="16"/>
+    <rect x="475" y="126" width="205" height="118" rx="16"/>
+    <rect x="700" y="126" width="205" height="118" rx="16"/>
+    <rect x="925" y="126" width="205" height="118" rx="16"/>
+    <rect x="250" y="290" width="420" height="250" rx="18"/>
+    <rect x="700" y="290" width="430" height="250" rx="18"/>
+  </g>
+  <g font-family="Arial" font-weight="700">
+    <text x="280" y="178" fill="#E6E8EE" font-size="42">2</text>
+    <text x="505" y="178" fill="#E6E8EE" font-size="42">1</text>
+    <text x="730" y="178" fill="#E6E8EE" font-size="42">5</text>
+    <text x="955" y="178" fill="#E6E8EE" font-size="42">60%</text>
+  </g>
+  <g fill="#D946EF">
+    <circle cx="286" cy="256" r="5"/>
+    <circle cx="430" cy="256" r="5"/>
+    <circle cx="586" cy="256" r="5"/>
+    <circle cx="744" cy="256" r="5"/>
+  </g>
+  <text x="280" y="576" fill="#93C5FD" font-family="Arial" font-size="20">Invoice Vision • Material Matcher • Compliance Auditor • BOQ Normalizer</text>
+</svg>
