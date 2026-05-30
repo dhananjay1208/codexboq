@@ -7,6 +7,7 @@ import {
   Building2,
   FileSpreadsheet,
   FileText,
+  GraduationCap,
   Home,
   LogOut,
   Menu,
@@ -25,6 +26,7 @@ import { Button } from "@/components/ui/button";
 import { AiActivityChip } from "@/components/ai-activity-chip";
 
 const navItems = [
+  { label: "Demo Guide", href: "/guide", Icon: GraduationCap },
   { label: "Dashboard", href: "/", Icon: Home },
   { label: "Sites", href: "/sites", Icon: Building2 },
   { label: "BOQ", href: "/boq", Icon: FileSpreadsheet },
@@ -65,8 +67,8 @@ function SidebarContent({
         )}
       >
         <Link
-          href="/"
-          aria-label="Dashboard"
+          href="/guide"
+          aria-label="Demo Guide"
           onClick={onNavigate}
           className="flex min-w-0 items-center gap-3"
         >
@@ -186,7 +188,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         >
           <Menu className="size-5" />
         </Button>
-        <Link href="/" className="flex items-center gap-2" aria-label="Dashboard">
+        <Link href="/guide" className="flex items-center gap-2" aria-label="Demo Guide">
           <div className="flex size-9 items-center justify-center rounded-xl border border-white/10 bg-white/10">
             <Sparkles className="size-4 text-[var(--accent)]" />
           </div>

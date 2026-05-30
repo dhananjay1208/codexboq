@@ -60,13 +60,15 @@ The seed creates sites, suppliers, 30 materials, BOQ rows, committed GRNs, compl
 
 ## Demo Loop
 
-1. Dashboard: show live KPIs and AI capability pills.
+1. Demo Guide: explain the problem, full user journey, AI agents, and sample files.
 2. GRN: upload or manually enter an invoice, watch Vision and Matcher logs, review matched materials, commit.
 3. Inventory: verify GRN inflows and consumption outflows update available stock and value.
 4. Consumption: upload or manually enter material issues and commit outflows.
 5. Compliance: upload or re-audit docs and show flagged AI findings.
 6. MIR Reports: select a GRN date and download the verified report PDF or matrix Excel.
 7. BOQ: import Excel and show the Normalizer column map.
+
+The hosted app includes a sample document repository at `/guide`, backed by files in `public/demo-documents`, so judges can download invoices, compliance docs, issue vouchers, and a BOQ template for testing.
 
 ## Screenshots
 

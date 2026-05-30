@@ -27,8 +27,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "BOQ.ai",
     description:
-      "Four AI agents for construction BOQ, invoice extraction, material matching, and compliance auditing.",
-    url: "https://boqai-demo.vercel.app",
+      "AI agents for construction GRN, inventory, material consumption, compliance, MIR reporting, and BOQ workflows.",
+    url: "https://boqai.netlify.app",
     siteName: "BOQ.ai",
     type: "website",
   },
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "BOQ.ai",
     description:
-      "Agentic BOQ management for construction teams.",
+      "Agentic site operations for construction teams.",
   },
 };
 

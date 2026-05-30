@@ -18,7 +18,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (getSession()) {
-      router.replace("/");
+      router.replace("/guide");
     }
   }, [router]);
 
@@ -35,7 +35,7 @@ export default function LoginPage() {
     }
 
     toast.success("Welcome to BOQ.ai");
-    router.replace("/");
+    router.replace("/guide");
   }
 
   return (
@@ -89,7 +89,7 @@ export default function LoginPage() {
             className="h-11 bg-[var(--brand)] text-white hover:bg-blue-500"
             disabled={isSubmitting}
           >
-            Enter dashboard
+            Enter demo guide
           </Button>
         </form>
       </GlassCard>

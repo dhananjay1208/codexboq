@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-05-30T12:28:57.551Z",
+  "categories": [
+    {
+      "id": "invoices",
+      "label": "AI GRN invoices",
+      "folder": "01-ai-grn-invoices"
+    },
+    {
+      "id": "compliance-good",
+      "label": "Valid compliance docs",
+      "folder": "02-compliance-good"
+    },
+    {
+      "id": "compliance-mismatch",
+      "label": "Mismatch compliance docs",
+      "folder": "03-compliance-mismatch"
+    },
+    {
+      "id": "consumption",
+      "label": "AI consumption vouchers",
+      "folder": "04-ai-consumption-notes"
+    },
+    {
+      "id": "boq",
+      "label": "BOQ upload template",
+      "folder": "05-boq-template"
+    }
+  ]
+}
