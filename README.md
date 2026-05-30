@@ -68,7 +68,7 @@ The seed creates sites, suppliers, 30 materials, BOQ rows, committed GRNs, compl
 6. MIR Reports: select a GRN date and download the verified report PDF or matrix Excel.
 7. BOQ: import Excel and show the Normalizer column map.
 
-The hosted app includes a sample document repository at `/guide`, backed by files in `public/demo-documents`, so judges can download invoices, compliance docs, issue vouchers, and a BOQ template for testing.
+The hosted app includes a sample document repository at `/guide`, backed by files in `public/demo-documents`, so first-time users can download invoices, compliance docs, issue vouchers, and a BOQ template for testing.
 
 ## Screenshots
 

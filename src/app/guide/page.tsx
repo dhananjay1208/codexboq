@@ -110,7 +110,7 @@ const agents = [
   ["Material Matcher", "Maps invoice text to master materials", ClipboardCheck],
   ["Compliance Auditor", "Flags wrong TC/TDS documents", ShieldCheck],
   ["Issue Vision", "Reads material issue vouchers", PackageMinus],
-  ["BOQ Normalizer", "Next phase: structures BOQ imports", FileSpreadsheet],
+  ["BOQ Normalizer", "Next phase: structures BOQ imports, actuals and billing items", FileSpreadsheet],
 ] as const;
 
 const sampleDocs: Array<{
@@ -214,23 +214,40 @@ const accentClass: Record<string, string> = {
 export default function GuidePage() {
   return (
     <div className="space-y-6">
-      <GlassCard className="overflow-hidden p-0">
-        <div className="grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.2fr_0.8fr] lg:p-8">
-          <div className="space-y-6">
+      <GlassCard className="relative overflow-hidden p-0">
+        <div className="pointer-events-none absolute -left-24 -top-24 size-72 rounded-full bg-blue-500/20 blur-3xl" />
+        <div className="pointer-events-none absolute -right-20 top-20 size-96 rounded-full bg-fuchsia-500/20 blur-3xl" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-blue-400/60 to-transparent" />
+
+        <div className="relative grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.2fr_0.8fr] lg:p-8">
+          <div className="space-y-7">
             <div>
-              <div className="mb-3 flex items-center gap-2 text-sm font-medium text-fuchsia-200">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-fuchsia-400/20 bg-fuchsia-500/10 px-3 py-1.5 text-sm font-medium text-fuchsia-100">
                 <Bot className="size-4" />
-                Demo guide for judges and first-time users
+                Demo guide for first-time users
               </div>
-              <h1 className="max-w-4xl text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+              <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
                 BOQ.ai turns construction paperwork into one AI-assisted site
                 operations flow.
               </h1>
-              <p className="mt-4 max-w-3xl text-base leading-7 text-slate-400">
+              <p className="mt-5 max-w-3xl text-base leading-7 text-slate-300 sm:text-lg">
                 Start with a supplier invoice or delivery challan. BOQ.ai creates
                 the GRN, updates inventory, prompts compliance documents, audits
                 certificates, records material issues, and prepares MIR evidence.
               </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {["AI GRN", "Auto inventory", "Compliance audit", "Issue voucher", "MIR evidence"].map(
+                (label) => (
+                  <span
+                    key={label}
+                    className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-xs font-semibold text-slate-200"
+                  >
+                    {label}
+                  </span>
+                )
+              )}
             </div>
 
             <div className="flex flex-wrap gap-3">
@@ -257,8 +274,17 @@ export default function GuidePage() {
             </div>
           </div>
 
-          <div className="grid gap-3 rounded-2xl border border-white/10 bg-black/20 p-4">
-            <div className="text-sm font-medium text-slate-300">Problem solved</div>
+          <div className="rounded-3xl border border-white/10 bg-black/25 p-4 shadow-[0_0_50px_rgba(59,130,246,0.16)] backdrop-blur-xl">
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <div>
+                <div className="text-sm font-medium text-slate-300">Problem solved</div>
+                <p className="mt-1 text-xs text-slate-500">Manual loops replaced by one material record</p>
+              </div>
+              <div className="rounded-full border border-green-400/25 bg-green-500/10 px-3 py-1 text-xs font-semibold text-green-200">
+                Start here
+              </div>
+            </div>
+            <div className="grid gap-3">
             {[
               "Manual invoice entry delays GRN creation.",
               "Inventory is updated separately and becomes unreliable.",
@@ -270,12 +296,14 @@ export default function GuidePage() {
                 <span className="text-sm leading-6 text-slate-300">{item}</span>
               </div>
             ))}
+            </div>
           </div>
         </div>
       </GlassCard>
 
       <section className="grid gap-4 xl:grid-cols-[1fr_360px]">
-        <GlassCard className="p-5 sm:p-6">
+        <GlassCard className="relative overflow-hidden p-5 sm:p-6">
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-blue-500/10 to-transparent" />
           <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm font-medium text-blue-200">Complete flow experience</p>
@@ -286,7 +314,7 @@ export default function GuidePage() {
             </p>
           </div>
 
-          <div className="grid gap-3 md:grid-cols-2">
+          <div className="relative grid gap-3 md:grid-cols-2">
             {flowSteps.map((step) => {
               const Icon = step.Icon;
 
@@ -294,7 +322,7 @@ export default function GuidePage() {
                 <div
                   key={step.title}
                   className={cn(
-                    "rounded-2xl border p-4",
+                    "rounded-2xl border p-4 shadow-[0_0_26px_rgba(15,23,42,0.22)] transition hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/[0.08]",
                     accentClass[step.accent] ?? accentClass.blue
                   )}
                 >
@@ -330,12 +358,13 @@ export default function GuidePage() {
           </div>
         </GlassCard>
 
-        <GlassCard className="p-5 sm:p-6">
+        <GlassCard className="relative overflow-hidden p-5 sm:p-6">
+          <div className="pointer-events-none absolute -right-12 -top-12 size-44 rounded-full bg-fuchsia-500/20 blur-3xl" />
           <p className="text-sm font-medium text-fuchsia-200">AI agents removing friction</p>
           <h2 className="mt-1 text-2xl font-semibold text-white">Five-agent workflow</h2>
-          <div className="mt-5 grid gap-3">
+          <div className="relative mt-5 grid gap-3">
             {agents.map(([name, helper, Icon]) => (
-              <div key={name} className="flex gap-3 rounded-xl border border-white/10 bg-white/[0.04] p-3">
+              <div key={name} className="flex gap-3 rounded-xl border border-white/10 bg-white/[0.04] p-3 transition hover:border-fuchsia-300/30 hover:bg-white/[0.07]">
                 <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-fuchsia-500/10 text-fuchsia-200">
                   <Icon className="size-4" />
                 </div>
@@ -347,26 +376,28 @@ export default function GuidePage() {
             ))}
           </div>
           <div className="mt-5 rounded-xl border border-amber-400/20 bg-amber-500/10 p-3 text-sm leading-6 text-amber-100">
-            BOQ management is the next phase: import BOQ, report actual work
-            done, connect compliance achieved, and generate billing-ready items.
+            BOQ Management is a module in progress and will be added as the next
+            phase. It will help report actual work done, connect compliance
+            achieved, and generate billing for the respective BOQ billing items.
           </div>
         </GlassCard>
       </section>
 
-      <GlassCard id="sample-documents" className="p-5 sm:p-6">
+      <GlassCard id="sample-documents" className="relative overflow-hidden p-5 sm:p-6">
+        <div className="pointer-events-none absolute -left-16 top-12 size-56 rounded-full bg-green-500/10 blur-3xl" />
         <div className="mb-5 flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-sm font-medium text-green-200">Sample document repository</p>
             <h2 className="text-2xl font-semibold text-white">Download these files to test the app</h2>
           </div>
           <p className="max-w-2xl text-sm leading-6 text-slate-400">
-            Judges can download a file, then upload it back into the relevant module.
-            This avoids needing their own invoices, compliance certificates, issue
-            vouchers or BOQ template.
+            First-time users can download a file, then upload it back into the
+            relevant module. This avoids needing their own invoices, compliance
+            certificates, issue vouchers or BOQ template.
           </p>
         </div>
 
-        <div className="grid gap-4 lg:grid-cols-2">
+        <div className="relative grid gap-4 lg:grid-cols-2">
           {sampleDocs.map((group) => (
             <div key={group.title} className="rounded-2xl border border-white/10 bg-black/20 p-4">
               <h3 className="text-lg font-semibold text-white">{group.title}</h3>
