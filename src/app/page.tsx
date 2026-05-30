@@ -311,7 +311,7 @@ export default function DashboardPage() {
       {
         label: "Total Sites",
         value: totalSites,
-        helper: "Live projects in Supabase",
+        helper: "Live construction projects",
         Icon: Building2,
       },
       {
